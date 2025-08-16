@@ -1097,11 +1097,11 @@ a {
 }
 
 .card--taiwan {
-  background-image: url('../assets/img/taiwan.jpg');
+  background-image: url("../assets/img/taiwan.jpg");
 }
 
 .card--hongkong {
-  background-image: url('../assets/img/hongkong.jpg');
+  background-image: url("../assets/img/hongkong.jpg");
 }
 
 .card-overlay {
@@ -1165,4 +1165,5 @@ a {
     padding: 0.4rem 0.75rem;
   }
 }
+
 
