@@ -53,8 +53,8 @@ a {
   color: inherit;
 }
 
-.btn-primary,
-.btn-secondary {
+.hero .btn-primary,
+.hero .btn-secondary {
   display: inline-block;
   padding: 0.75rem 1.5rem;
   border-radius: 4px;
@@ -62,23 +62,53 @@ a {
   transition: background 0.3s, color 0.3s;
 }
 
-.btn-primary {
+.hero .btn-primary {
   background: var(--accent-color);
   color: #fff;
   border: 2px solid var(--accent-color);
 }
 
-.btn-primary:hover {
+.hero .btn-primary:hover {
   background: var(--accent-dark);
 }
 
-.btn-secondary {
+.hero .btn-secondary {
   background: transparent;
   color: var(--secondary-color);
   border: 2px solid var(--secondary-color);
 }
 
-.btn-secondary:hover {
+.herobtn-secondary:hover {
+  background: var(--secondary-color);
+  color: #fff;
+}
+/*btn contact*/
+.contact .btn-primary,
+.hero .btn-secondary {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: background 0.3s, color 0.3s;
+}
+
+.contact .btn-primary {
+  background: var(--accent-color);
+  color: #fff;
+  border: 2px solid var(--accent-color);
+}
+
+.contact .btn-primary:hover {
+  background: var(--accent-dark);
+}
+
+.contact .hero .btn-secondary {
+  background: transparent;
+  color: var(--secondary-color);
+  border: 2px solid var(--secondary-color);
+}
+
+.contact .btn-secondary:hover {
   background: var(--secondary-color);
   color: #fff;
 }
@@ -118,7 +148,7 @@ a {
 
 /* Logo */
 .logo img {
-  max-height: 80px;
+  max-height: 70px;
   display: block;
 }
 
@@ -319,7 +349,7 @@ a {
   }
 
   .logo img {
-    max-height: 60px;
+    max-height: 50px;
     margin-bottom: 0.5rem;
   }
 
@@ -446,57 +476,366 @@ a {
 /*===============================
   Process Section
 ================================*/
-.process {
+/* styles.css */
+/* Base Styling */
+.our-process {
   padding: 4rem 1rem;
+  background: #fff;
 }
-
-.process h2 {
-  text-align: center;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+.section-title {
+  font-size: clamp(1.5rem, 5vw, 2.25rem);
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+.process-toggle {
+  display: inline-flex;
+  border: 2px solid var(--primary-color);
+  border-radius: 6px;
+  overflow: hidden;
   margin-bottom: 2rem;
 }
-
+.toggle-btn {
+  padding: .5rem 1.5rem;
+  background: #fff;
+  color: var(--primary-color);
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background .2s;
+}
+.toggle-btn.active {
+  background: var(--primary-color);
+  color: #fff;
+}
 .process-steps {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 2.5rem;
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
-
 .process-steps li {
-  flex: 1 1 150px;
-  background: var(--bg-light);
-  padding: 1rem;
-  border-radius: 4px;
-  text-align: center;
+  background: #fafafa;
+  padding: 1.5rem 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.process-steps li img {
+  width: 56px;
+  height: 56px;
+  margin-bottom: 1rem;
+}
+.process-steps li .label {
+   font-size: 1rem;
+  font-weight: 500;
+  color: var(--primary-color);
+}
+.process-steps li:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: 0.2s ease;
 }
 
+/* Responsiveness */
+
+/* MOBILE: ≤ 600px */
+@media (max-width: 600px) {
+  .process-toggle {
+    flex-direction: column;
+    width: 100%;
+  }
+  .toggle-btn {
+    width: 100%;
+    margin-bottom: .5rem;
+    text-align: center;
+  }
+  .process-steps {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .process-steps li img {
+    width: 40px;
+    height: 40px;
+  }
+  .process-steps li .label {
+    font-size: .85rem;
+  }
+}
+
+/* TABLET: 601px – 900px */
+@media (min-width: 601px) and (max-width: 900px) {
+  .process-steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* DESKTOP KECIL: 901px – 1200px */
+@media (min-width: 901px) and (max-width: 1200px) {
+  .process-steps {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* DESKTOP BESAR: > 1200px */
+@media (min-width: 1201px) {
+  .process-steps {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
 /*===============================
-  Partners Section
+  Categories Section
 ================================*/
-.partners {
+.categories {
+  background: #f5f8fa;
   padding: 4rem 1rem;
 }
-
-.partners h2 {
+.section-title {
   text-align: center;
+  font-family: 'Merriweather', serif;
+  font-weight: 700;
+  font-size: 2.25rem;
+  color: var(--primary-color);
   margin-bottom: 2rem;
 }
 
-.partners-logos {
-  display: flex;
-  flex-wrap: wrap;
+/* Grid dua kolom yang center */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
-  justify-content: center;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-.partners-logos img {
-  max-width: 120px;
-  filter: grayscale(80%);
-  transition: filter 0.3s;
+/* Kartu individual */
+.category-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: transform .3s, box-shadow .3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+}
+.category-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
 }
 
-.partners-logos img:hover {
-  filter: grayscale(0);
+/* Judul & deskripsi */
+.category-card h3 {
+  margin: 0 0 .5rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--primary-color);
+}
+.category-card p {
+  margin: 0 0 1rem;
+  font-size: .95rem;
+  color: #666;
+}
+
+/* Daftar kriteria dengan ikon checklist */
+/*===============================
+  List Styling: Divider, ::marker & Hover
+================================*/
+
+/* Divider tipis sebelum daftar kriteria */
+.criteria-list {
+  border-top: 1px solid #dcdcdc;
+  padding-top: 1rem; /* jarak antara judul dan list */
+}
+
+/* Reset default marker dan pakai ::marker */
+.criteria-list li {
+  list-style: none;
+  font-size: .9rem;
+  color: #444;
+  margin-bottom: .6em;
+  transition: transform .2s, color .2s;
+}
+
+.criteria-list li::marker {
+  content: "✔ ";
+  color: var(--primary-color);
+  font-size: 1em;
+}
+
+/* Hover state untuk tiap item */
+.criteria-list li:hover {
+  color: var(--primary-color);
+  transform: translateX(4px);
+  transition: color .2s, transform .2s;
+}
+
+/* Responsive satu kolom di mobile */
+@media (max-width: 640px) {
+  .categories {
+    padding: 2rem 1rem;
+  }
+  .section-title {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+}
+/*===============================
+  Override Alignment
+================================*/
+.category-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.criteria-list {
+  width: 100%;
+  text-align: left;
+  margin-top: 1rem;
+  padding-left: 1.25rem;
+}
+/* ==============================================
+   Section Blog / Berita
+   ============================================== */
+
+.blog {
+  padding: 4rem 1rem;
+  background: #fdfdfd;
+}
+
+.blog .section-title {
+  font-size: clamp(1.75rem, 5vw, 2.25rem);
+  color: var(--primary-color);
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+/* Grid untuk kartu post */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+/* Kartu Berita */
+.post-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow .2s;
+}
+/* Bungkus gambar agar proporsional */
+.post-card .image-wrapper {
+  width: 100%;
+  height: 150px;            /* Atur tinggi tetap */
+  overflow: hidden;         /* Potong bagian yang melebihi */
+  border-radius: 4px 4px 0 0;
+  margin-bottom: 0.5rem;
+}
+
+.post-card .image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;        /* Memotong & mengisi area tanpa distorsi */
+  display: block;
+}
+.post-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.post-card h3 {
+  font-size: 1.25rem;
+  margin: 0 0 .5rem;
+  color: var(--primary-color);
+}
+
+.post-card .post-date {
+  font-size: .85rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.post-card p {
+  flex: 1;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  color: #444;
+}
+
+.post-card a {
+  align-self: flex-start;
+  font-weight: 600;
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color .2s;
+}
+
+.post-card a:hover {
+  color: var(--secondary-color);
+}
+
+/* Status Messages */
+.blog-grid .loading,
+.blog-grid .error {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: #777;
+}
+/* Spinner loading */
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top: 4px solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 2rem auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/* Responsiveness tweaks */
+@media (max-width: 600px) {
+  .blog .section-title {
+    text-align: center;
+  }
+}
+/* Spinner loading (responsive) */
+.spinner {
+  width: clamp(30px, 8vw, 60px);
+  height: clamp(30px, 8vw, 60px);
+  border: 0.4em solid rgba(0, 0, 0, 0.1);
+  border-top: 0.4em solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 2rem auto;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
 /*===============================
@@ -718,4 +1057,111 @@ a {
 /* Kalau logo masih terlalu mepet, beri sedikit margin atas */
 .logo img {
   margin-top: 2px;
+}
+/*===============================
+  Negara Tujuan
+===============================*/
+.destinations {
+  padding: 4rem 1rem;
+  background: var(--bg-light);
+}
+
+.destinations h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: var(--primary-color);
+}
+
+.destination-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.destination-card {
+  position: relative;
+  height: 340px;
+  border-radius: 8px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  align-items: flex-end;
+}
+
+.destination-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+.card--taiwan {
+  background-image: url('assets/img/taiwan.jpg');
+}
+
+.card--hongkong {
+  background-image: url('assets/img/hongkong.jpg');
+}
+
+.card-overlay {
+  width: 100%;
+  padding: 1.5rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+  color: #fff;
+  text-align: center;
+}
+
+.card-overlay h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-overlay p {
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.category-options {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-secondary {
+  background: rgba(255,255,255,0.85);
+  color: var(--primary-color);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: #fff;
+  transform: scale(1.05);
+}
+
+/*===============================
+  Responsive Adjustments
+===============================*/
+@media (max-width: 600px) {
+  .destination-card {
+    height: 280px;
+  }
+
+  .card-overlay h3 {
+    font-size: 1.3rem;
+  }
+
+  .card-overlay p {
+    font-size: 0.85rem;
+  }
+
+  .btn-secondary {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.75rem;
+  }
 }
