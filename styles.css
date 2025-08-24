@@ -295,9 +295,11 @@ a {
    ============================== */
 @media (max-width: 768px) {
   .navbar-container {
+    width: 100%;
     flex-direction: column;
     align-items: flex-start;
-    padding: 1rem;
+    padding: 16px;
+    margin: auto;
   }
 
   .nav-menu {
@@ -1255,4 +1257,5 @@ a {
 .logo img {
   margin-top: 2px;
 }
+
 
