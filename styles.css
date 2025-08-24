@@ -300,7 +300,30 @@ a {
     align-items: flex-start;
     padding: 16px;
     margin: auto;
+    background-color: transparent;
+    color: var(--nav-text-default);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
   }
+
+  .navbar.scrolled {
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    color: var(--nav-text-scrolled);
+  }
+
+  .navbar.scrolled .nav-menu a {
+    color: var(--nav-text-scrolled);
+  }
+
+  .navbar.scrolled .theme-toggle {
+    color: var(--nav-text-scrolled);
+  }
+
+  .navbar.scrolled .toggler-icon,
+  .navbar.scrolled .toggler-icon::before,
+  .navbar.scrolled .toggler-icon::after {
+    background-color: var(--nav-text-scrolled);
+  }}
 
   .nav-menu {
     flex-direction: column;
@@ -363,7 +386,7 @@ a {
     right: 1rem;
     font-size: 1.25rem;
   }
-}
+
 /*===============================
   Hero Section (Modular Parallax)
 ================================*/
