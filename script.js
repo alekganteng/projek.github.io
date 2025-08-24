@@ -42,109 +42,55 @@ document.addEventListener('DOMContentLoaded', () => {
     themeToggle.textContent = next === 'light' ? '🌙' : '☀️';
   });
 
-  // 5. Parallax hero
-  const heroEl = document.querySelector('.hero');
-  window.addEventListener('scroll', () => {
-    if (heroEl) {
-      heroEl.style.backgroundPositionY = window.pageYOffset * 0.5 + 'px';
-    }
-  });
+// 5. Parallax hero (versi transform)
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  const offset = scrollY * 0.3;
+  const bgEl = document.querySelector('.hero-bg');
+  if (bgEl) {
+    bgEl.style.transform = `translateY(${offset}px)`;
+  }
+});
+//6 berita
+const container = document.getElementById("blog-container");
 
-// Ambil elemen container
-const blogContainer = document.getElementById('blog-posts');
-
-// Daftar RSS feed sumber berita
-const sources = [
-  'https://rss.detik.com/index.php/indeks',
-  'https://feeds.kompas.com/kompas-nasional.rss',
-  'https://www.cnnindonesia.com/nasional/rss'
-];
-
-// Fungsi utama untuk fetch, merge, sort, dan render 6 item teratas
-async function loadTop6News() {
-  console.log('🚀 loadTop6News() dipanggil');
-
-  // Tampilkan spinner
-  blogContainer.innerHTML = '<div class="spinner"></div>';
-
+async function fetchBerita() {
   try {
-    console.log(`🔄 Memulai fetch untuk ${sources.length} sumber`);
-    const feedPromises = sources.map(url => {
-      const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}`;
-      console.log('  ➡️ fetching:', apiUrl);
+    const response = await fetch("data/blog.json");
+    const data = await response.json();
 
-      return fetch(apiUrl, { cache: 'no-cache' })
-        .then(res => {
-          console.log(`    [${url}] status:`, res.status);
-          if (!res.ok) throw new Error(`HTTP ${res.status}`);
-          return res.json();
-        })
-        .then(json => {
-          const count = Array.isArray(json.items) ? json.items.length : 0;
-          console.log(`    [${url}] items parsed:`, count);
-          return json.items || [];
-        })
-        .catch(err => {
-          console.error(`    Error fetching ${url}:`, err);
-          return [];
-        });
-    });
+    if (!data || data.length === 0) {
+      container.innerHTML = "<p>Tidak ada berita tersedia saat ini.</p>";
+      return;
+    }
 
-    // Tunggu semua fetch selesai
-    const feeds = await Promise.all(feedPromises);
-    console.log('✅ Semua fetch selesai:', feeds.map(f => f.length));
-
-    // Flatten, sort by tanggal, ambil 6 pertama
-    const allItems = feeds.flat();
-    console.log('🔢 Total items sebelum sort:', allItems.length);
-
-    const sorted = allItems.sort((a, b) =>
-      new Date(b.pubDate) - new Date(a.pubDate)
-    );
-    const top6 = sorted.slice(0, 6);
-    console.log('🏆 Top6 titles:', top6.map(i => i.title));
-
-    renderPosts(top6);
-  }
-  catch (err) {
-    console.error('❌ Error loading feeds:', err);
-    blogContainer.innerHTML =
-      '<p class="error">Gagal memuat berita. Silakan coba lagi nanti.</p>';
+    renderBerita(data);
+  } catch (error) {
+    console.error("Gagal ambil berita:", error);
+    container.innerHTML = "<p>Berita gagal dimuat. Coba lagi nanti.</p>";
   }
 }
 
-// Fungsi untuk merender array item dari RSS
-function renderPosts(items) {
-  if (!items.length) {
-    console.warn('⚠️ Tidak ada berita untuk ditampilkan');
-    blogContainer.innerHTML = '<p class="error">Belum ada berita.</p>';
-    return;
-  }
+function renderBerita(articles) {
+  container.innerHTML = "";
 
-  blogContainer.innerHTML = '';
-  items.forEach(item => {
-    const date = new Date(item.pubDate).toLocaleDateString('id-ID', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric'
-    });
+  articles.forEach(item => {
+    const card = document.createElement("div");
+    card.className = "post-card compact";
 
-    const card = document.createElement('article');
-    card.className = 'post-card';
     card.innerHTML = `
+      <img src="${item.thumbnail || 'images/default.jpg'}" alt="${item.title}">
       <h3>${item.title}</h3>
-      <time class="post-date" datetime="${item.pubDate}">${date}</time>
-      <p>${item.description || ''}</p>
-      <a href="${item.link}" target="_blank" rel="noopener">
-        Baca selengkapnya →
-      </a>
+      <p class="post-date">${new Date(item.pubDate).toLocaleDateString('id-ID')}</p>
+      <p>${item.description || "Tidak ada deskripsi."}</p>
+      <a href="${item.link}" target="_blank">Baca selengkapnya</a>
     `;
-    blogContainer.appendChild(card);
+
+    container.appendChild(card);
   });
 }
 
-// Panggil loadTop6News sekali saat script selesai dieksekusi
-loadTop6News();
+fetchBerita();
 // Data label + icon untuk Formal & PLRT
 const stepData = {
   formal: [
@@ -170,21 +116,44 @@ const stepData = {
 };
 
 // Render langkah
+function createStepElement(step, index, isLast) {
+  const li = document.createElement('li');
+  li.style.setProperty('--step-index', index);
+
+  const img = document.createElement('img');
+  img.className = 'icon';
+  img.src = step.icon;
+  img.alt = `Step ${index + 1} Icon`;
+
+  const label = document.createElement('p');
+  label.className = 'label';
+  label.textContent = step.label;
+
+  if (isLast && step.label.trim() !== '') {
+    const gesture = document.createElement('span');
+    gesture.className = 'gesture';
+    gesture.textContent = '💛 Ur wish almost granted!';
+    label.appendChild(gesture);
+  }
+
+  li.appendChild(img);
+  li.appendChild(label);
+  return li;
+}
+
 function renderSteps(type) {
-  const cards = document.querySelectorAll('.process-steps li');
-  cards.forEach((card, idx) => {
-    const step = stepData[type][idx];
-    if (step && step.label.trim() !== "") {
-      card.querySelector('.label').textContent = step.label;
-      card.querySelector('.icon').src = step.icon;
-      card.style.display = '';
-    } else {
-      card.style.display = 'none';
+  const container = document.querySelector('.process-steps');
+  container.innerHTML = '';
+  const steps = stepData[type];
+  steps.forEach((step, idx) => {
+    if (step.label.trim() !== '') {
+      const isLast = idx === steps.length - 1;
+      const stepEl = createStepElement(step, idx, isLast);
+      container.appendChild(stepEl);
     }
   });
 }
 
-// Event listener toggle
 document.querySelectorAll('.process-toggle .toggle-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
@@ -192,7 +161,30 @@ document.querySelectorAll('.process-toggle .toggle-btn').forEach(btn => {
     renderSteps(btn.dataset.type);
   });
 });
-
-// Load default (Formal)
+// kontak
 renderSteps('formal');
 })
+const form = document.querySelector(".contact-form");
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const name = form.name.value.trim();
+  const email = form.email.value.trim();
+  const phone = form.phone.value.trim();
+  const destination = form.destination.value;
+
+  if (!name || !email || !phone || !destination) {
+    alert("Mohon lengkapi semua data sebelum mengirim.");
+    return;
+  }
+
+  const message = `Halo Admin, saya ${name} ingin konsultasi.\nEmail: ${email}\nTelepon: ${phone}\nNegara Tujuan: ${destination}`;
+  const encoded = encodeURIComponent(message);
+
+  // Ganti nomor WA admin di sini (format: 62xxxxxxxxxx)
+  const adminNumber = "6282240410477";
+  const waLink = `https://wa.me/${adminNumber}?text=${encoded}`;
+
+  window.open(waLink, "_blank");
+});
