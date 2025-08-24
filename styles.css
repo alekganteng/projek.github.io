@@ -320,7 +320,7 @@ a {
 
   .nav-menu li {
     width: 100%;
-    
+    color: #fff;
   }
 
   .nav-menu a {
@@ -622,7 +622,7 @@ a {
 }
 
 .card--hongkong {
-  background-image: url('/projek.github.io/assets/img/Hongkong.jpg');
+  background-image: url('/projek.github.ioassets/img/Hongkong.jpg');
 }
 
 .card-overlay {
