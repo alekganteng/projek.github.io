@@ -15,6 +15,7 @@
 
   <!-- Main CSS -->
   <link rel="stylesheet" href="styles.css"/>
+  <script src="https://static.sekandocdn.net/static/feednami/feednami-client-v1.1.js"></script>
 </head>
 <body>
 
@@ -55,29 +56,32 @@
 
   <!-- HERO -->
   <section id="home" class="hero">
-    <div class="hero-content">
-      <h1>Mitra Terpercaya Penyalur Tenaga Kerja Profesional ke Luar Negeri</h1>
-      <p>Layanan penuh, mulai dari rekrutmen hingga monitoring on-site</p>
-      <div class="hero-cta">
-        <a href="#contact" class="btn-primary">Hubungi Kami</a>
-      </div>
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <h1>Mitra Terpercaya Penyalur Tenaga Kerja Profesional ke Luar Negeri</h1>
+    <p>Layanan penuh, mulai dari rekrutmen hingga monitoring on-site</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn-primary">Hubungi Kami</a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ABOUT -->
-  <section id="about" class="about">
-    <div class="container about-text">
-      <h2>Tentang Kami</h2>
-      <p>
-        Kami menyelenggarakan pelatihan dan penempatan pekerja migran Indonesia
-        dengan standar internasional dan izin resmi P2P.
-      </p>
-    </div>
-    <div class="container about-image">
-      <img src="assets/img/team-photo.jpg" alt="Tim Inti Perusahaan"/>
-    </div>
-  </section>
-
+ <!-- ABOUT -->
+<section id="about" class="about">
+  <div class="container about-text">
+   <a href="assets/docs/legalitas.pdf" class="badge-certified" download>
+  ✔️ Legal & Resmi </a>
+    <h2>Tentang Kami</h2>
+    <p>
+      Kami menyelenggarakan pelatihan dan penempatan pekerja migran Indonesia
+      dengan standar internasional dan izin resmi P2P.
+    </p>
+    <p><em>“Kami bukan cuma penyalur, kami penyambung harapan.”</em></p>
+  </div>
+  <div class="container about-image">
+    <img src="assets/img/team-photo.jpg" alt="Tim Inti Perusahaan"/>
+  </div>
+</section>
   <!-- SERVICES -->
   <section id="services" class="services">
     <div class="container">
@@ -111,10 +115,14 @@
       <div class="destination-card card--taiwan">
         <div class="card-overlay">
           <h3>Taiwan</h3>
-          <p>Kesempatan kerja di sektor PLRT dan pabrik manufaktur.</p>
+          <p>Kesempatan kerja di sektor PLRT, pabrik, panti jompo, konstruksi, perkebunan, dan peternakan.</p>
           <div class="category-options">
             <a href="#art-tw" class="btn-secondary">PLRT</a>
-            <a href="#factory-tw" class="btn-secondary">Pekerja Pabrik</a>
+            <a href="#factory-tw" class="btn-secondary">Pabrik</a>
+            <a href="#elderly-tw" class="btn-secondary">Panti Jompo</a>
+            <a href="#construction-tw" class="btn-secondary">Konstruksi</a>
+            <a href="#farm-tw" class="btn-secondary">Perkebunan</a>
+            <a href="#livestock-tw" class="btn-secondary">Peternakan</a>
           </div>
         </div>
       </div>
@@ -123,10 +131,9 @@
       <div class="destination-card card--hongkong">
         <div class="card-overlay">
           <h3>Hong Kong</h3>
-          <p>Peluang kerja sebagai PLRT dan pekerja logistik.</p>
+          <p>Peluang kerja sebagai PLRT.</p>
           <div class="category-options">
             <a href="#art-hk" class="btn-secondary">PLRT</a>
-            <a href="#factory-hk" class="btn-secondary">Pekerja Pabrik</a>
           </div>
         </div>
       </div>
@@ -171,68 +178,52 @@
     </div>
   </div>
 </section>
+
 <!-- PROCESS -->
 <section id="our-process" class="our-process">
   <div class="container">
     <h2 class="section-title">Proses Kami</h2>
 
     <!-- Toggle Buttons -->
-    <div class="process-toggle">
-      <button class="toggle-btn active" data-type="formal">Formal</button>
-      <button class="toggle-btn" data-type="plrt">PLRT / Perawat Lansia</button>
+    <div class="process-toggle" role="tablist">
+      <button class="toggle-btn active" data-type="formal" role="tab">Formal</button>
+      <button class="toggle-btn" data-type="plrt" role="tab">PLRT / Perawat Lansia</button>
     </div>
 
     <!-- Grid Langkah -->
-    <ul class="process-steps">
-      <li data-step="1">
-        <img class="icon" src="" alt="Step 1 Icon">
-        <p class="label"></p>
-      </li>
-      <li data-step="2">
-        <img class="icon" src="" alt="Step 2 Icon">
-        <p class="label"></p>
-      </li>
-      <li data-step="3">
-        <img class="icon" src="" alt="Step 3 Icon">
-        <p class="label"></p>
-      </li>
-      <li data-step="4">
-        <img class="icon" src="" alt="Step 4 Icon">
-        <p class="label"></p>
-      </li>
-      <li data-step="5">
-        <img class="icon" src="" alt="Step 5 Icon">
-        <p class="label"></p>
-      </li>
-      <li data-step="6">
-        <img class="icon" src="" alt="Step 6 Icon">
-        <p class="label"></p>
-      </li>
-      <li data-step="7">
-        <img class="icon" src="" alt="Step 7 Icon">
-        <p class="label"></p>
-      </li>
-      <li data-step="8">
-        <img class="icon" src="" alt="Step 8 Icon">
-        <p class="label"></p>
-      </li>
+    <ul class="process-steps" aria-live="polite">
+      <!-- Langkah akan diisi via JS -->
     </ul>
   </div>
 </section>
-
-  <!-- TESTIMONIALS -->
-  <section id="testimonials" class="testimonials">
-    <div class="container">
-      <h2>Testimoni</h2>
-      <div class="testimonial-slider">
-        <div class="testimonial-card">
-          <p>"Prosesnya cepat dan dukungannya luar biasa. Saya merasa aman bekerja di luar negeri."</p>
-          <h4>– Agus, Caregiver di Singapura</h4>
-        </div>
+<!-- TESTIMONI -->
+<section id="testimonials" class="testimonials">
+  <div class="container">
+    <h2>Testimoni</h2>
+    <div class="testimonial-grid">
+      <div class="testimonial-card">
+        <p>"Saya kerja di pabrik elektronik Taiwan. Awalnya bingung, tapi tim bantu semua proses sampai berangkat. Gaji stabil, kerjaan jelas."</p>
+        <h4>– Rudi, Pekerja Pabrik di Taiwan</h4>
+      </div>
+      <div class="testimonial-card">
+        <p>"Sebagai PLRT di Hong Kong, saya dilatih komunikasi dan etika kerja. Majikan baik, dan saya bisa kirim uang rutin ke keluarga."</p>
+        <h4>– Sari, PLRT di Hong Kong</h4>
+      </div>
+      <div class="testimonial-card">
+        <p>"Saya kerja di perkebunan Taiwan. Awalnya berat, tapi suasana kerja solid dan ada pelatihan. Bonus akhir tahun bikin semangat 💪"</p>
+        <h4>– Eko, Pekerja Perkebunan di Taiwan</h4>
+      </div>
+      <div class="testimonial-card">
+        <p>"Di panti jompo Taiwan, saya belajar sabar dan empati. Tim support luar biasa, dan saya merasa dihargai sebagai caregiver."</p>
+        <h4>– Lina, Perawat Lansia di Taiwan</h4>
+      </div>
+      <div class="testimonial-card">
+        <p>"Saya kerja konstruksi di Taiwan. Fasilitas lengkap, ada pelatihan safety, dan tiap minggu dikasih love besar sama tim 😭💖"</p>
+        <h4>– Andi, Pekerja Konstruksi di Taiwan</h4>
       </div>
     </div>
-  </section>
-
+  </div>
+</section>
   <!-- FAQ -->
   <section id="faq" class="faq">
     <div class="container">
@@ -248,16 +239,12 @@
     </div>
   </section>
 
-  <!-- BLOG -->
-<section class="blog-posts">
-  <div class="container">
-    <h2 class="section-title">Berita Terbaru</h2>
-    <!-- Hanya satu elemen dengan id="blog-posts" -->
-    <div id="blog-posts" class="blog-grid">
-      <div class="spinner"></div>
-    </div>
-  </div>
+<!-- blog -->
+<section id="blog-section">
+  <h2>Berita & Gaji Terbaru</h2>
+  <div id="blog-container" class="blog-container"></div>
 </section>
+
   <!-- CONTACT -->
   <section id="contact" class="contact">
     <div class="container">
@@ -268,8 +255,8 @@
         <input type="tel" name="phone" placeholder="Telepon" required/>
         <select name="destination" required>
           <option value="">Pilih Negara Tujuan</option>
-          <option value="singapore">Taiwan</option>
-          <option value="hongkong">Hong Kong</option>
+          <option value="Taiwan">Taiwan</option>
+          <option value="Hongkong">Hongkong</option>
         </select>
         <button type="submit" class="btn-primary">Kirim</button>
       </form>
@@ -306,6 +293,9 @@
         </div>
       </div>
     </div>
+    <div class="footer-bottom">
+  <p>© 2025 PT. Berkah Yuniva Kencana 💛</p>
+</div>
   </footer>
 
   <!-- Panggil script utama -->
