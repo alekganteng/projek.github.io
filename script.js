@@ -188,3 +188,16 @@ form.addEventListener("submit", function (e) {
 
   window.open(waLink, "_blank");
 });
+
+//efek scrolling
+document.addEventListener("DOMContentLoaded", () => {
+  const navbar = document.getElementById("navbar");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 10) {
+      navbar.classList.add("scrolled");
+    } else {
+      navbar.classList.remove("scrolled");
+    }
+  });
+});
