@@ -614,11 +614,11 @@ a {
 }
 
 .card--taiwan {
-  background-image: url('/projek.github.io/assets/img/taiwan.jpg');
+  background-image: url('/projek.github.io/assets/img/Taiwan.jpg');
 }
 
 .card--hongkong {
-  background-image: url('/projek.github.io/assets/img/hongkong.jpg');
+  background-image: url('/projek.github.io/assets/img/Hongkong.jpg');
 }
 
 .card-overlay {
@@ -1255,4 +1255,5 @@ a {
 .logo img {
   margin-top: 2px;
 }
+
 
