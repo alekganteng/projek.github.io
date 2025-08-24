@@ -295,11 +295,9 @@ a {
    ============================== */
 @media (max-width: 768px) {
   .navbar-container {
-    width: 100%;
     flex-direction: column;
     align-items: flex-start;
-    padding: 16px;
-    margin: auto;
+    padding: 1rem;
   }
 
   .nav-menu {
@@ -320,11 +318,9 @@ a {
 
   .nav-menu li {
     width: 100%;
-    color: #fff;
   }
 
   .nav-menu a {
-    
     display: block;
     padding: 0.75rem 1rem;
     font-size: 1rem;
@@ -622,7 +618,7 @@ a {
 }
 
 .card--hongkong {
-  background-image: url('/projek.github.ioassets/img/Hongkong.jpg');
+  background-image: url('/projek.github.io/assets/img/Hongkong.jpg');
 }
 
 .card-overlay {
@@ -1259,3 +1255,4 @@ a {
 .logo img {
   margin-top: 2px;
 }
+
